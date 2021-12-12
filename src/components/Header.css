@@ -1,0 +1,25 @@
+.header {
+  background-color: #282c34;
+  min-height: 70px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  width: 100%;
+}
+
+.footer {
+  background-color: #282c34;
+  min-height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  width: 100%;
+}
+
+.socials:hover {
+  background-color: aquamarine;
+}
