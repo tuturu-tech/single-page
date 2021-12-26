@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import logoSkelly from "../images/logo.png";
+import dopeDonut from "../images/dope.png";
 import { ReactComponent as DiscordLogo } from "../images/discord.svg";
 import { ReactComponent as TwitterLogo } from "../images/twitter.svg";
 import { Button } from "../components";
@@ -61,9 +62,10 @@ const Header = ({ provider, loadWeb3Modal, logoutOfWeb3Modal }) => {
   return (
     <div class="header">
       <img
-        style={{ maxWidth: "200px", marginLeft: "30px" }}
-        src={logoSkelly}
-        alt="logo"
+        style={{ maxWidth: "300px", marginLeft: "30px" }}
+        src={dopeDonut}
+        alt="https://www.vecteezy.com/free-vector/king"
+        href="https://www.vecteezy.com/free-vector/king"
       />
 
       <div

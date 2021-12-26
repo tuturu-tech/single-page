@@ -3,6 +3,7 @@ import { Contract } from "@ethersproject/contracts";
 import { getDefaultProvider } from "@ethersproject/providers";
 import React, { useEffect, useState } from "react";
 import graveyard from "./images/graveyard.jpg";
+import donuts from "./images/donuts.jpg";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -61,7 +62,7 @@ function App() {
           width: "100%",
           height: "761px",
           maxWidth: "2000px",
-          backgroundImage: `url(${graveyard})`,
+          backgroundImage: `url(${donuts})`,
           backgroundSize: "cover",
         }}
       >
@@ -70,7 +71,7 @@ function App() {
           loadWeb3Modal={loadWeb3Modal}
           logoutOfWeb3Modal={logoutOfWeb3Modal}
         />
-        <Hero />
+        <Hero provider={provider} />
       </div>
       <Body />
       <Footer />

@@ -1,9 +1,77 @@
 import skelly from "../images/skelly.png";
 import cards from "../images/cards.png";
+import { ethers } from "ethers";
+import DopeDonuts from "../contracts/abis/DopeDonuts.json";
 
 import "../App.css";
 
-const Hero = () => {
+const CONTRACT_ADDRESS = "0x7399db4225e62E256c1765ff6Cb66bDe8ab83902";
+
+const askContractToMintNft = async (_provider) => {
+  try {
+    if (_provider) {
+      const provider = _provider;
+      const signer = provider.getSigner();
+      const connectedContract = new ethers.Contract(
+        CONTRACT_ADDRESS,
+        DopeDonuts.abi,
+        signer
+      );
+
+      console.log("Going to pop wallet now to pay gas...");
+      let nftTxn = await connectedContract.publicMint({
+        value: ethers.utils.parseEther("0.001"),
+      });
+
+      console.log("Mining...please wait.");
+      await nftTxn.wait();
+
+      console.log(
+        `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
+      );
+    } else {
+      console.log("Ethereum object doesn't exist!");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const giveaway = async (_provider) => {
+  try {
+    if (_provider) {
+      const provider = _provider;
+      const signer = provider.getSigner();
+      const connectedContract = new ethers.Contract(
+        CONTRACT_ADDRESS,
+        DopeDonuts.abi,
+        signer
+      );
+
+      console.log("Going to pop wallet now to pay gas...");
+      let nftTxn = await connectedContract.giveAway(
+        "0xaaC1D92E356144c6b3032297Df02897F273C898c"
+      );
+
+      console.log("Mining...please wait.");
+      await nftTxn.wait();
+
+      console.log(
+        `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
+      );
+    } else {
+      console.log("Ethereum object doesn't exist!");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const mintButtonPressed = async (provider) => {
+  await askContractToMintNft(provider);
+};
+
+const Hero = ({ provider }) => {
   return (
     <div
       style={{
@@ -14,6 +82,12 @@ const Hero = () => {
         height: "inherit",
         zIndex: "1",
         flexWrap: "wrap",
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        marginTop: "50px",
+        marginBottom: "50px",
+        paddingLeft: "20px",
+        paddingRight: "20px",
+        borderRadius: "10px",
       }}
     >
       <div
@@ -51,22 +125,28 @@ const Hero = () => {
             WebkitTextStroke: "1px black ",
           }}
         >
-          <i>Hey Fella'! Pshh, over here! </i>
-          <p>
-            Wanna buy a pet? We got 'em real cheap here, 50 percent off!{" "}
-            <i>Heheh</i>
-          </p>
+          <i>Bake a donut!</i>
         </h2>
         <button
           style={{
             width: "50%",
             fontSize: "36px",
             fontFamily: "forte",
-            backgroundColor: "#ffeddc",
+            backgroundColor: "#e95654",
           }}
           class="button glow-button"
+          onClick={async () => {
+            await askContractToMintNft(provider);
+          }}
         >
-          Summon
+          Bake
+        </button>
+        <button
+          onClick={async () => {
+            await giveaway(provider);
+          }}
+        >
+          Test
         </button>
         <div
           style={{

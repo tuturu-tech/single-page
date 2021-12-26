@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
-  background-color: #282c34;
+  background-color: white;
   min-height: 70px;
   display: flex;
   flex-direction: row;
@@ -37,7 +37,7 @@ export const Link = styled.a.attrs({
 `;
 
 export const Button = styled.button`
-  background-color: white;
+  background-color: #e95654;
   border: none;
   border-radius: 8px;
   color: #282c34;
